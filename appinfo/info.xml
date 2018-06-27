@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>conversejs</id>
+    <name>Converse Js</name>
+    <summary>A free and open-source XMPP chat client in your Nextcloud.</summary>
+    <description><![CDATA[**A free and open-source XMPP chat client in your Nextcloud.** You can connect to any publicly accessible XMPP/Jabber server, either from a public provider, or one you have set up yourself.
+
+Don&#39;t have an XMPP/Jabber account?
+No problem! With converse.js you can register an account on any public XMPP server that allows registration.]]></description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author mail="li@last.nl" homepage="https://gitlab.com/lil5">lil5</author>
+    <namespace>ConverseJs</namespace>
+    <category>integration</category>
+    <category>organization</category>
+    <category>social</category>
+    <bugs>https://gitlab.com/lil5/nextcloud-conversejs/issues</bugs>
+    <dependencies>
+        <nextcloud min-version="13" max-version="13"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>Converse Js</name>
+            <route>conversejs.page.index</route>
+        </navigation>
+    </navigations>
+</info>
