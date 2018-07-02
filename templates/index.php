@@ -1,18 +1,23 @@
 <?php
-script('conversejs', 'script');
-style('conversejs', 'style');
+script('conversejs', 'converse.min');
+style('conversejs', 'converse.min');
+
 ?>
+<script>
+function () {
+  function init() {
+    converse.initialize({
+      bosh_service_url: 'https://conversejs.org/http-bind/', // Please use this connection manager only for testing purposes
+      show_controlbox_by_default: true
+    });
+  }
 
-<div id="app">
-	<div id="app-navigation">
-		<?php print_unescaped($this->inc('navigation/index')); ?>
-		<?php print_unescaped($this->inc('settings/index')); ?>
-	</div>
+  window.addEventListener ?
+  window.addEventListener("load",init,false) :
+  window.attachEvent && window.attachEvent("onload",init);
 
-	<div id="app-content">
-		<div id="app-content-wrapper">
-			<?php print_unescaped($this->inc('content/index')); ?>
-		</div>
-	</div>
-</div>
+}();
 
+
+
+</script>
