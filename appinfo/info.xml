@@ -25,4 +25,7 @@ No problem! With converse.js you can register an account on any public XMPP serv
             <route>conversejs.page.index</route>
         </navigation>
     </navigations>
+    <settings>
+      <admin>OCA\Settings\AdminSettings</admin>
+    </settings>
 </info>

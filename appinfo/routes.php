@@ -10,6 +10,7 @@
 return [
     'routes' => [
 	   ['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-	   ['name' => 'page#do_echo', 'url' => '/echo', 'verb' => 'POST'],
+	   ['name' => 'settings#settings', 'url' => '/ajax/settings', 'verb' => 'POST'],
+     ['name' => 'getsettings#settings', 'url' => '/ajax/settings', 'verb' => 'GET'],
     ]
 ];

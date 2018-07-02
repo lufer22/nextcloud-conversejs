@@ -1,23 +1,21 @@
 <?php
 script('conversejs', 'converse.min');
-style('conversejs', 'converse.min');
+// script('conversejs', 'init');
+style('conversejs', 'inverse.min');
+
+
+
 
 ?>
+<h1>hi</h1>
+<p><?php p($_['boshUrl']) ?></p>
 <script>
-function () {
-  function init() {
+(function ($, converse) {
+  $(document).ready(function () {
     converse.initialize({
-      bosh_service_url: 'https://conversejs.org/http-bind/', // Please use this connection manager only for testing purposes
+      bosh_service_url: '<?php p($_['boshUrl']) ?>',
       show_controlbox_by_default: true
     });
-  }
-
-  window.addEventListener ?
-  window.addEventListener("load",init,false) :
-  window.attachEvent && window.attachEvent("onload",init);
-
-}();
-
-
-
+  });
+});
 </script>
