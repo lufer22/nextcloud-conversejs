@@ -1,5 +1,10 @@
 # Converse Js
-Place this app in **nextcloud/apps/**
+> Place this app in **nextcloud/apps/**
+
+## This project is still under heavy development
+
+Although I strive for the Master branch may have working versions, this is still just the beginning of the project and may still have bugs.
+
 
 ## Building the app
 
