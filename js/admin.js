@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	$("#bosh_url").on('change input paste keyup', function(e) {
-		var boshURL = $(e.currentTarget).val();
-
+	$("#bosh_url").on('change paste', function() {
+		var boshUrl = $(this).val();
+		console.log(boshUrl);
 		OCP.AppConfig.setValue('conversejs', 'boshUrl', boshUrl)
 	})
 });

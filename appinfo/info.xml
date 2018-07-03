@@ -23,6 +23,8 @@ No problem! With converse.js you can register an account on any public XMPP serv
         <navigation>
             <name>Converse Js</name>
             <route>conversejs.page.index</route>
+            <icon>app.svg</icon>
+            <order>40</order>
         </navigation>
     </navigations>
     <settings>

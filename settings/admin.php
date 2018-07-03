@@ -1,5 +1,5 @@
 <?php
-namespace OCA\ConverseJs;
+namespace OCA\ConverseJs\Settings;
 
 use OCP\User;
 
