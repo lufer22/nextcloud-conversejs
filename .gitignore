@@ -2,3 +2,7 @@ build
 vendor
 composer.lock
 tmp
+package-lock.json
+yarn.lock
+node_modules/*
+/sass/converse.js/*
