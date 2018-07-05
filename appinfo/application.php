@@ -20,58 +20,53 @@ use OCA\ConverseJs\Controller\PageController;
 
 class Application extends App
 {
+	public $appConfig;
 
-  public $appConfig;
+	public function __construct(array $urlParams = array())
+	{
+		$appName = 'conversejs';
 
-  public function __construct(array $urlParams = array())
-  {
-    $appName = 'conversejs';
+		parent::__construct($appName, $urlParams);
 
-    parent::__construct($appName, $urlParams);
+		$this->appConfig = new AppConfig($appName);
 
-    $this->appConfig = new AppConfig($appName);
+		$container = $this->getContainer();
 
-    $container = $this->getContainer();
+		/** Controllers */
+		$container->registerService("L10N", function ($c) {
+			return $c->query("ServerContainer")->getL10N($c->query("AppName"));
+		});
+		// $container->registerService("RootStorage", function($c)
+		//  {
+		//      return $c->query("ServerContainer")->getRootFolder();
+		//  });
+		//  $container->registerService("UserSession", function($c)
+		//  {
+		//      return $c->query("ServerContainer")->getUserSession();
+		//  });
+		$container->registerService("Logger", function ($c) {
+			return $c->query("ServerContainer")->getLogger();
+		});
 
-    /** Controllers */
-    $container->registerService("L10N", function($c)
-    {
-        return $c->query("ServerContainer")->getL10N($c->query("AppName"));
-    });
-    // $container->registerService("RootStorage", function($c)
-    //  {
-    //      return $c->query("ServerContainer")->getRootFolder();
-    //  });
-    //  $container->registerService("UserSession", function($c)
-    //  {
-    //      return $c->query("ServerContainer")->getUserSession();
-    //  });
-     $container->registerService("Logger", function($c)
-     {
-         return $c->query("ServerContainer")->getLogger();
-     });
-
-    $container->registerService("SettingsController", function($c)
-    {
-        return new SettingsController(
-                $c->query("AppName"),
-                $c->query("Request"),
-                $c->query("L10N"),
-                $c->query("Logger"),
-                $this->appConfig
-        );
-    });
-    $container->registerService("PageController", function($c)
-    {
-        return new PageController(
-            $c->query("AppName"),
-            $c->query("Request"),
-            // $c->query("RootStorage"),
-            // $c->query("UserSession"),
-            $c->query("L10N"),
-            $c->query("Logger"),
-            $this->appConfig
-        );
-    });
-  }
+		$container->registerService("SettingsController", function ($c) {
+			return new SettingsController(
+				$c->query("AppName"),
+				$c->query("Request"),
+				$c->query("L10N"),
+				$c->query("Logger"),
+				$this->appConfig
+			);
+		});
+		$container->registerService("PageController", function ($c) {
+			return new PageController(
+				$c->query("AppName"),
+				$c->query("Request"),
+				// $c->query("RootStorage"),
+				// $c->query("UserSession"),
+				$c->query("L10N"),
+				$c->query("Logger"),
+				$this->appConfig
+			);
+		});
+	}
 }

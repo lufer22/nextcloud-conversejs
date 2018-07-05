@@ -1,15 +1,15 @@
 {
-    "name": "Converse Js",
-    "description": "A free and open-source XMPP chat client in your Nextcloud.",
-    "type": "project",
-    "license": "AGPL",
-    "authors": [
-        {
-            "name": "lil5"
-        }
-    ],
-    "require": {},
-    "require-dev": {
-        "phpunit/phpunit": "^5.4"
-    }
+	"name": "Converse Js",
+	"description": "A free and open-source XMPP chat client in your Nextcloud.",
+	"type": "project",
+	"license": "AGPL",
+	"authors": [
+		{
+			"name": "lil5"
+		}
+	],
+	"require": {},
+	"require-dev": {
+		"phpunit/phpunit": "^5.4"
+	}
 }

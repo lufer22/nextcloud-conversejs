@@ -9,6 +9,8 @@ User::checkAdminUser();
 
 $app = new Application();
 $container = $app->getContainer();
-$response = $container->query("\OCA\ConverseJs\Controller\SettingsController")->index();
+$response = $container
+	->query("\OCA\ConverseJs\Controller\SettingsController")
+	->index();
 
 return $response->render();
