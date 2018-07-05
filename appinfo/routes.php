@@ -8,9 +8,14 @@
  * it's instantiated in there
  */
 return [
-    'routes' => [
-	   ['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-	   ['name' => 'settings#settings', 'url' => '/ajax/settings', 'verb' => 'POST'],
-     ['name' => 'getsettings#settings', 'url' => '/ajax/settings', 'verb' => 'GET'],
-    ]
+	'routes' =>
+		[
+			['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
+			['name' => 'settings#settings', 'url' => '/ajax/settings', 'verb' => 'POST'],
+			[
+				'name' => 'getsettings#settings',
+				'url' => '/ajax/settings',
+				'verb' => 'GET'
+			]
+		]
 ];

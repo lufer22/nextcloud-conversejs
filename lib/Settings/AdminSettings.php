@@ -15,25 +15,28 @@ use OCP\Settings\ISettings;
 
 use OCA\ConverseJs\AppInfo\Application;
 
-class AdminSettings implements ISettings {
+class AdminSettings implements ISettings
+{
+	public function __construct()
+	{
 
-    public function __construct()
-    {
-    }
+	}
 
-    public function getForm()
-    {
-        $app = new Application();
-        $container = $app->getContainer();
-        $response = $container->query("\OCA\ConverseJs\Controller\SettingsController")->index();
-        return $response;
-    }
-    public function getSection()
-    {
-        return "server";
-    }
-    public function getPriority()
-    {
-        return 10;
-    }
+	public function getForm()
+	{
+		$app = new Application();
+		$container = $app->getContainer();
+		$response = $container
+			->query("\OCA\ConverseJs\Controller\SettingsController")
+			->index();
+		return $response;
+	}
+	public function getSection()
+	{
+		return "server";
+	}
+	public function getPriority()
+	{
+		return 10;
+	}
 }
