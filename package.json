@@ -4,8 +4,8 @@
     "build:conversejs": "cp node_modules/converse.js/dist/converse.min.js js/ && cp -r node_modules/converse.js/sass/* ./sass/converse.js/",
     "lint:editorconfig": "editorconfig-checker --exclude-pattern './package-lock.json' --exclude-pattern './sass/converse.js/**'",
     "lint:php": "phplint  '**/*.php' '!node_modules/**'",
-    "lint:prettier": "prettier --write './**/*.@(js|scss|php|json)'",
-    "test": "npm run lint:editorconfig && npm run lint:php"
+    "lint:prettier": "prettier --write './**/*.@(js|scss|php|json|md)'",
+    "test": "npm run lint:prettier && npm run lint:php && npm run lint:editorconfig"
   },
   "dependencies": {
     "converse.js": "^3.3.4"

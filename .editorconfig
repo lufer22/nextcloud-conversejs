@@ -5,12 +5,8 @@ end_of_line = lf
 insert_final_newline = true
 charset = utf-8
 
-[*.{js,json,php}]
+[*.{js,json,php,scss,yaml,yml}]
 indent_style = tab
 
 [Makefile]
 indent_style = tab
-
-[{package.json,.travis.yml,composer.json,*.md}]
-indent_style = space
-indent_size = 2
