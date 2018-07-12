@@ -61,8 +61,6 @@ class Application extends App
 			return new PageController(
 				$c->query("AppName"),
 				$c->query("Request"),
-				// $c->query("RootStorage"),
-				// $c->query("UserSession"),
 				$c->query("L10N"),
 				$c->query("Logger"),
 				$this->appConfig

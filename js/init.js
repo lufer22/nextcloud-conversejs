@@ -1,18 +1,17 @@
-var foo = 0;
-console.log(foo);
-foo++;
-// (function ($, converse, OCP) {
-console.log(foo);
-foo++;
 $(document).ready(function() {
-	console.log(foo);
-	foo++;
-	// var boshUrl = OCP.AppConfig.getValue('conversejs', 'bosh_url');
-	var boshUrl = "https:conversejs.org/http-bind/";
-	converse.initialize({
-		bosh_service_url: boshUrl,
-		jid: "lil5@disroot.org",
-		show_controlbox_by_default: true
+	$.ajax({
+		url: OC.generateUrl("/apps/conversejs/settings/admin"),
+		type: "post",
+		data: {},
+		success: function(response) {
+			if (response && response.data.boshUrl.length > 0) {
+				converse.initialize({
+					bosh_service_url: response.data.boshUrl,
+					show_controlbox_by_default: true
+				});
+			} else {
+				OC.Notification.show('Bosh url is not configured')
+			}
+		}
 	});
 });
-// })(jQuery, converse, OCP);

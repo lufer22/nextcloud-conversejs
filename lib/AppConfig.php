@@ -19,7 +19,7 @@ class AppConfig
 	private $predefL = "auto";
 
 	protected $appName;
-	private $config;
+	public $config;
 	private $logger;
 
 	// The config keys

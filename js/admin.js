@@ -1,7 +1,18 @@
 $(document).ready(function() {
-	$("#bosh_url").on("change paste", function() {
+
+	$("#conversejs_bosh_url_input").on("change paste", function() {
 		var boshUrl = $(this).val();
-		console.log(boshUrl);
-		OCP.AppConfig.setValue("conversejs", "boshUrl", boshUrl);
+
+		$.ajax({
+			url: OC.generateUrl("apps/conversejs/settings/admin"),
+			type: "POST",
+			data: { boshUrl },
+			success: function(response) {
+				if (response && response.data != null) {
+					OC.Notification.showTemporary(response.message);
+				}
+			}
+		});
 	});
+
 });

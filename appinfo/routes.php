@@ -11,11 +11,6 @@ return [
 	'routes' =>
 		[
 			['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-			['name' => 'settings#settings', 'url' => '/ajax/settings', 'verb' => 'POST'],
-			[
-				'name' => 'getsettings#settings',
-				'url' => '/ajax/settings',
-				'verb' => 'GET'
-			]
+			['name' => 'settings#admin', 'url' => '/settings/admin', 'verb' => 'POST']
 		]
 ];
