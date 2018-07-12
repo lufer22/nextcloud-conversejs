@@ -2,8 +2,8 @@
 	"scripts": {
 		"build": "npm install --save-prod && npm run build:conversejs",
 		"build:conversejs": "cp node_modules/converse.js/dist/converse.min.js js/ && cp -r node_modules/converse.js/sass/* ./sass/converse.js/",
-		"lint:editorconfig": "editorconfig-checker --exclude-pattern './package-lock.json' --exclude-pattern './sass/converse.js/**'",
-		"lint:php": "phplint  '**/*.php' '!node_modules/**'",
+		"lint:editorconfig": "editorconfig-checker --exclude-pattern './package-lock.json' --exclude-pattern './sass/converse.js/**' --exclude-pattern './vendor/**' --exclude-pattern './build/**'",
+		"lint:php": "phplint  '**/*.php' '!node_modules/**' '!vendor/**' '!build/**'",
 		"lint:prettier": "prettier --write './**/*.@(js|scss|php|json|md)'",
 		"test": "npm run lint:prettier && npm run lint:php && npm run lint:editorconfig"
 	},
