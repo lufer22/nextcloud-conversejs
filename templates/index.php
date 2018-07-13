@@ -3,5 +3,18 @@ script('conversejs', 'converse.min');
 script('conversejs', 'init');
 style('conversejs', 'converse.min');
 ?>
-<h1>hi</h1>
-<p><?php p($_['boshUrl']); ?></p>
+<form id="conversejs_user_form">
+	<section>
+		<label>JID</label>
+		<br />
+		<input type="text" name="jid" />
+	</section>
+	<section>
+		<label>Password</label>
+		<br/>
+		<input type="password" name="pass" />
+	</section>
+	<section>
+		<input type="submit" value="Submit" />
+	</section>
+</form>
