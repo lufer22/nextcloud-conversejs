@@ -12,7 +12,7 @@ style('conversejs', 'converse.min');
 	<section>
 		<label>Password</label>
 		<br/>
-		<input type="password" name="pass" />
+		<input type="password" name="pass" placeholder="<?php echo str_repeat('&#8226;', 10); ?>" />
 	</section>
 	<section>
 		<input type="submit" value="Submit" />
