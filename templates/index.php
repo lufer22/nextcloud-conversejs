@@ -7,7 +7,7 @@ style('conversejs', 'converse.min');
 	<section>
 		<label>JID</label>
 		<br />
-		<input type="text" name="jid" />
+		<input type="text" name="jid" value="<?php p($_['jid']); ?>" />
 	</section>
 	<section>
 		<label>Password</label>
