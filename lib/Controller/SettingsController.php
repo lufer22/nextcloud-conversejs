@@ -13,6 +13,7 @@ namespace OCA\ConverseJs\Controller;
 
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Http\DataResponse;
 use OCP\IL10N;
 use OCP\ILogger;
 use OCP\IRequest;
@@ -53,32 +54,34 @@ class SettingsController extends Controller
 	public function index()
 	{
 		$data = [
-			"boshUrl" => $this->config->GetBoshUrl(),
+			"boshUrl" =>
+				$this->config->config->getAppValue($this->appName, 'boshUrl', ''),
 			"l" => $this->config->GetL()
 		];
 		return new TemplateResponse($this->appName, "settings", $data, "blank");
 	}
-	public function settings($boshUrl)
-	{
-		$boshUrl = trim($_POST['boshUrl']);
-		$l = trim($_POST['l']);
-		$this->config->SetBoshUrl($boshUrl);
-		$this->config->SetL($l);
-		return [
-			"boshUrl" => $this->config->GetBoshUrl(),
-			"l" => $this->config->GetL()
-		];
-	}
+
 	/**
 	 * Get supported formats
-	 *
+	 * @param string $boshUrl
 	 * @return array
 	 *
 	 * @NoAdminRequired
 	 */
-	public function getsettings()
+	public function admin($boshUrl = false)
 	{
+		if ($boshUrl !== false) {
+			$this->config->config->setAppValue($this->appName, 'boshUrl', $boshUrl);
+		}
+		// $this->logger->error("posted", array("app" => $this->appName));
 		$data = array();
-		return $data;
+		return new DataResponse(array(
+			'message' => (string) $this->l->t('Changed bosh url'),
+			'data' =>
+				array(
+					'boshUrl' =>
+						(string) $this->config->config->getAppValue($this->appName, 'boshUrl', '')
+				)
+		));
 	}
 }

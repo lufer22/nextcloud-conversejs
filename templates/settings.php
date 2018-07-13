@@ -1,11 +1,13 @@
-//script('conversejs', 'admin');
+<?php
+script('conversejs', 'admin');
+?>
 
-<div class="section section-conversejs-bosh">
+<div class="section section-conversejs">
 	<h2><?php p($l->t('Converse Js')); ?></h2>
 
-		<p>
-			<?php p($l->t('Bosh url')); ?>
-		</p>
-		<input type="text" id="bosh_url" name="bosh_url" value="<?php p($_['boshUrl']); ?>">
+		<label for="conversejs_bosh_url_input"
+		><?php p($l->t('Bosh url')); ?></label>
+		<br />
+		<input type="text" id="conversejs_bosh_url_input" name="bosh_url" value="<?php p($_['boshUrl']); ?>">
 	</div>
 </div>

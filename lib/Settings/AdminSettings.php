@@ -33,7 +33,7 @@ class AdminSettings implements ISettings
 	}
 	public function getSection()
 	{
-		return "server";
+		return "additional";
 	}
 	public function getPriority()
 	{

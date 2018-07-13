@@ -29,16 +29,18 @@ $policy->addAllowedMediaDomain('\'self\'');
 $policy->addAllowedMediaDomain('blob:');
 $policy->addAllowedChildSrcDomain('\'self\'');
 $policy->addAllowedConnectDomain('\'self\'');
-$policy->addAllowedConnectDomain('https://conversejs.org/');
-$boshUrl = \OC::$server->getConfig()->getAppValue('conversejs', 'boshUrl');
+// $policy->addAllowedConnectDomain('conversejs.org');
+$boshUrl = \OC::$server
+	->getConfig()
+	->getAppValue('conversejs', 'boshUrl', 'https://conversejs.org');
 if (
 	preg_match(
-		'#^(https?:)?//([a-z0-9][a-z0-9\-.]*[a-z0-9](:[0-9]+)?)/#i',
+		'/^((https?:\/\/)?[a-z0-9][a-z0-9\-.]*[a-z0-9](:[0-9]+)?)/i',
 		$boshUrl,
 		$matches
 	)
 ) {
-	$boshDomain = $matches[2];
+	$boshDomain = $matches[1];
 	$policy->addAllowedConnectDomain($boshDomain);
 }
 $manager->addDefaultPolicy($policy);

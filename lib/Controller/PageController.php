@@ -93,7 +93,9 @@ class PageController extends Controller
 			$this->logger->error("boshUrl is empty", array("app" => $this->appName));
 			return [
 				"error" =>
-					$this->l->t("ConverseJs app not configured! Please contact admin.")
+					$this->l->t(
+						"ConverseJs app not configured! Please contact admin. (no bosh url)"
+					)
 			];
 		}
 		// $boshUrlArray = explode("?",$drawioUrl);
@@ -114,16 +116,6 @@ class PageController extends Controller
 			// "filePath" => $baseFolder->getRelativePath($file->getPath())
 		];
 		$response = new TemplateResponse($this->appName, "index", $params);
-		$csp = new ContentSecurityPolicy();
-		$csp->allowInlineScript(true);
-		if (isset($boshUrl) && !empty($boshUrl)) {
-			$csp->addAllowedScriptDomain($boshUrl);
-			$csp->addAllowedFrameDomain($boshUrl);
-			$csp->addAllowedFrameDomain("blob:");
-			$csp->addAllowedChildSrcDomain($boshUrl);
-			$csp->addAllowedChildSrcDomain("blob:");
-		}
-		$response->setContentSecurityPolicy($csp);
 		return $response;
 	}
 }
