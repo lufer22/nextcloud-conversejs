@@ -32,7 +32,7 @@ $policy->addAllowedConnectDomain('\'self\'');
 // $policy->addAllowedConnectDomain('conversejs.org');
 $boshUrl = \OC::$server
 	->getConfig()
-	->getAppValue('conversejs', 'boshUrl', 'https://conversejs.org');
+	->getAppValue('conversejs', 'boshUrl', '');
 if (
 	preg_match(
 		'/^((https?:\/\/)?[a-z0-9][a-z0-9\-.]*[a-z0-9](:[0-9]+)?)/i',
