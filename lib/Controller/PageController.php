@@ -102,6 +102,23 @@ class PageController extends Controller
 
 		$params = ["boshUrl" => $boshUrl, "l" => $l, 'jid' => $jid];
 		$response = new TemplateResponse($this->appName, "index", $params);
+
+		$policy = new ContentSecurityPolicy();
+		$policy->addAllowedStyleDomain('\'self\'');
+		$policy->addAllowedStyleDomain('\'unsafe-inline\'');
+		$policy->addAllowedScriptDomain('\'self\'');
+		$policy->addAllowedImageDomain('*');
+		$policy->addAllowedImageDomain('data:');
+		$policy->addAllowedImageDomain('blob:');
+		$policy->addAllowedMediaDomain('*');
+		$policy->addAllowedMediaDomain('blob:');
+		$policy->addAllowedFrameDomain('*');
+		$policy->addAllowedFrameDomain('blob;');
+		$policy->addAllowedChildSrcDomain('*');
+		$policy->addAllowedChildSrcDomain('blob:');
+		$policy->addAllowedConnectDomain('*');
+		$response->setContentSecurityPolicy($policy);
+
 		return $response;
 	}
 }
