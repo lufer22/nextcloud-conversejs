@@ -54,22 +54,13 @@ class SettingsController extends Controller
 	public function index()
 	{
 		$data = [
-			"boshUrl" => $this->config->GetBoshUrl(),
+			"boshUrl" =>
+				$this->config->config->getAppValue($this->appName, 'boshUrl', ''),
 			"l" => $this->config->GetL()
 		];
 		return new TemplateResponse($this->appName, "settings", $data, "blank");
 	}
-	public function settings($boshUrl)
-	{
-		$boshUrl = trim($_POST['boshUrl']);
-		$l = trim($_POST['l']);
-		$this->config->SetBoshUrl($boshUrl);
-		$this->config->SetL($l);
-		return [
-			"boshUrl" => $this->config->GetBoshUrl(),
-			"l" => $this->config->GetL()
-		];
-	}
+
 	/**
 	 * Get supported formats
 	 * @param string $boshUrl
@@ -89,11 +80,7 @@ class SettingsController extends Controller
 			'data' =>
 				array(
 					'boshUrl' =>
-						(string) $this->config->config->getAppValue(
-							$this->appName,
-							'boshUrl',
-							'test'
-						)
+						(string) $this->config->config->getAppValue($this->appName, 'boshUrl', '')
 				)
 		));
 	}

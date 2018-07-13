@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	$("#conversejs_bosh_url_input").on("change paste", function() {
 		var boshUrl = $(this).val();
 
@@ -10,9 +9,11 @@ $(document).ready(function() {
 			success: function(response) {
 				if (response && response.data != null) {
 					OC.Notification.showTemporary(response.message);
+				} else {
+					console.error(response);
+					OC.Notification.showTemporary("Error");
 				}
 			}
 		});
 	});
-
 });

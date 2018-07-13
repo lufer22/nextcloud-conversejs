@@ -10,7 +10,7 @@ $(document).ready(function() {
 					show_controlbox_by_default: true
 				});
 			} else {
-				OC.Notification.show('Bosh url is not configured')
+				OC.Notification.show("Bosh url is not configured");
 			}
 		}
 	});
