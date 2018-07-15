@@ -20,7 +20,7 @@ use OCP\IL10N;
 use OCP\ILogger;
 use OCP\IRequest;
 // use OCP\IURLGenerator;
-// use OCP\IUserSession;
+use OCP\IUserSession;
 
 // use OC\Files\Filesystem;
 // use OC\Files\View;
@@ -35,15 +35,15 @@ class PageController extends Controller
 	// private $userSession;
 	// private $root;
 	// private $urlGenerator;
-	private $l;
-	private $logger;
-	private $config;
+	protected $appName;
+	protected $l;
+	protected $logger;
+	protected $config;
+	protected $user;
 	/**
 	 * @param string $AppName - application name
 	 * @param IRequest $request - request object
-	 * @param IRootFolder $root - root folder
 	 * @param IUserSession $userSession - current user session
-	 * @param IURLGenerator $urlGenerator - url generator service
 	 * @param IL10N $l - l10n service
 	 * @param ILogger $logger - logger
 	 * @param OCA\ConverseJs\AppConfig $config - app config
@@ -51,17 +51,14 @@ class PageController extends Controller
 	public function __construct(
 		$AppName,
 		IRequest $request,
-		// IRootFolder $root,
-		// IUserSession $userSession,
-		// IURLGenerator $urlGenerator,
+		IUserSession $userSession,
 		IL10N $l,
 		ILogger $logger,
 		AppConfig $config
 	) {
 		parent::__construct($AppName, $request);
-		// $this->userSession = $userSession;
-		// $this->root = $root;
-		// $this->urlGenerator = $urlGenerator;
+		$this->appName = $AppName;
+		$this->user = $userSession->getUser()->getUID();
 		$this->l = $l;
 		$this->logger = $logger;
 		$this->config = $config;
@@ -78,9 +75,13 @@ class PageController extends Controller
 	 */
 	public function index()
 	{
+		$jid = $this->config->config->getUserValue(
+			$this->user,
+			$this->appName,
+			'jid',
+			''
+		);
 		$boshUrl = $this->config->GetBoshUrl();
-		// $theme = $this->config->GetTheme();
-		// $overrideXml = $this->config->GetOverrideXml();
 		$l = $this->config->GetL();
 		$l = trim(strtolower($l));
 		if ($l == "auto") {
@@ -98,24 +99,26 @@ class PageController extends Controller
 					)
 			];
 		}
-		// $boshUrlArray = explode("?",$drawioUrl);
-		// if (count($drawioUrlArray) > 1){
-		//     $drawioUrl = $drawioUrlArray[0];
-		//     $drawioUrlArgs = $drawioUrlArray[1];
-		// } else {
-		//     $drawioUrlArgs = "";
-		// }
 
-		// $uid = $this->userSession->getUser()->getUID();
-		// $baseFolder = $this->root->getUserFolder($uid);
-		$params = [
-			"boshUrl" => $boshUrl,
-			// "theme" => $theme,
-			"l" => $l
-			// "overrideXml" => $overrideXml,
-			// "filePath" => $baseFolder->getRelativePath($file->getPath())
-		];
+		$params = ["boshUrl" => $boshUrl, "l" => $l, 'jid' => $jid];
 		$response = new TemplateResponse($this->appName, "index", $params);
+
+		$policy = new ContentSecurityPolicy();
+		$policy->addAllowedStyleDomain('\'self\'');
+		$policy->addAllowedStyleDomain('\'unsafe-inline\'');
+		$policy->addAllowedScriptDomain('\'self\'');
+		$policy->addAllowedImageDomain('*');
+		$policy->addAllowedImageDomain('data:');
+		$policy->addAllowedImageDomain('blob:');
+		$policy->addAllowedMediaDomain('*');
+		$policy->addAllowedMediaDomain('blob:');
+		$policy->addAllowedFrameDomain('*');
+		$policy->addAllowedFrameDomain('blob;');
+		$policy->addAllowedChildSrcDomain('*');
+		$policy->addAllowedChildSrcDomain('blob:');
+		$policy->addAllowedConnectDomain('*');
+		$response->setContentSecurityPolicy($policy);
+
 		return $response;
 	}
 }

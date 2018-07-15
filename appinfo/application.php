@@ -40,10 +40,9 @@ class Application extends App
 		//  {
 		//      return $c->query("ServerContainer")->getRootFolder();
 		//  });
-		//  $container->registerService("UserSession", function($c)
-		//  {
-		//      return $c->query("ServerContainer")->getUserSession();
-		//  });
+		$container->registerService("UserSession", function ($c) {
+			return $c->query("ServerContainer")->getUserSession();
+		});
 		$container->registerService("Logger", function ($c) {
 			return $c->query("ServerContainer")->getLogger();
 		});
@@ -52,6 +51,7 @@ class Application extends App
 			return new SettingsController(
 				$c->query("AppName"),
 				$c->query("Request"),
+				$c->query('UserSession'),
 				$c->query("L10N"),
 				$c->query("Logger"),
 				$this->appConfig
@@ -61,6 +61,7 @@ class Application extends App
 			return new PageController(
 				$c->query("AppName"),
 				$c->query("Request"),
+				$c->query('UserSession'),
 				$c->query("L10N"),
 				$c->query("Logger"),
 				$this->appConfig

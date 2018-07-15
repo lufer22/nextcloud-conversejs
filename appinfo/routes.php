@@ -11,6 +11,11 @@ return [
 	'routes' =>
 		[
 			['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-			['name' => 'settings#admin', 'url' => '/settings/admin', 'verb' => 'POST']
+			['name' => 'settings#admin', 'url' => '/settings/admin', 'verb' => 'POST'],
+			[
+				'name' => 'settings#personal',
+				'url' => '/settings/personal',
+				'verb' => 'POST'
+			]
 		]
 ];
