@@ -4,9 +4,11 @@
 
 > Place this app in **nextcloud/apps/**
 
-## This project is still under heavy development
+## This project is a fork from the original nextcloud-conversejs and is still under heavy development
+Original Repo: https://gitlab.com/lil5/nextcloud-conversejs/
 
 Although I strive for the Master branch may have working versions, this is still just the beginning of the project and may still have bugs.
+
 
 ## Building the app
 
